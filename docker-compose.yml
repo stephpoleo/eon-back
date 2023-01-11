@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  api:
+    container_name: eon
+    build: .
+    image: api_django_python_hello-world:basic-authorization
+    ports:
+      - "6060:6060"
+    env_file:
+      - .env
+    volumes:
+      - ./eonBackend:/eonBackend
+    command: >
+      sh -c "python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8000"
